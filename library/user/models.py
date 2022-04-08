@@ -21,7 +21,10 @@ class User(AbstractUser):
         max_length=64,
         blank=True
     )
-    birthday_year = models.PositiveIntegerField()
+    birthday_year = models.DateField(
+        null=True,
+        blank=True
+    )
     email = models.EmailField(
         max_length=110,
         unique=True)
