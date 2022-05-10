@@ -12,6 +12,7 @@ import axios from 'axios';
 import LoginForm from "./components/Auth/Auth";
 import Cookies from "universal-cookie/es6";
 import Header from "./components/Header/Header";
+import "./components/Header/Header.css"
 
 const NotFound404 = ({location}) => {
     return (
@@ -101,35 +102,35 @@ class App extends React.Component {
     render() {
         return (
 
-                <BrowserRouter>
-                    <nav>
-                        <ul>
-                            <li>
-                                <Link to='/'>Users</Link>
-                            </li>
-                            <li>
-                                <Link to='/todos'>Todos</Link>
-                            </li>
-                            <li>
-                                <Link to='/projects'>Projects</Link>
-                            </li>
-                            <li>
-                                {this.is_authenticated() ? <button onClick={() => this.logout()}>Logout</button> :
-                                    <Link to='/login'>Login</Link>}
-                            </li>
-                        </ul>
-                    </nav>
+            <BrowserRouter>
+                <nav>
+                    <ul>
+                        <li>
+                            <Link to='/'>Users</Link>
+                        </li>
+                        <li>
+                            <Link to='/todos'>Todos</Link>
+                        </li>
+                        <li>
+                            <Link to='/projects'>Projects</Link>
+                        </li>
+                        <li>
+                            {this.is_authenticated() ? <button onClick={() => this.logout()}>Logout</button> :
+                                <Link to='/login'>Login</Link>}
+                        </li>
+                    </ul>
+                </nav>
 
-                    <Routes>
-                        {/*<Redirect from='/todos' to='/'></Redirect>*/}
-                        <Route path='/' component={() => <UserList items={this.state.users}/>}/>
-                        <Route path='/todos/' component={() => <TodoList items={this.state.todos}/>}/>
-                        <Route path='/projects/' component={() => <ProjectList items={this.state.projects}/>}/>
-                        <Route component={NotFound404}></Route>
-                        <Route exact path='/login/' component={() => <LoginForm
-                            get_token={(username, password) => this.get_token(username, password)}/>}/>
-                    </Routes>
-                </BrowserRouter>
+                <Routes>
+                    {/*<Redirect from='/todos' to='/'></Redirect>*/}
+                    <Route path='/' component={() => <UserList items={this.state.users}/>}/>
+                    <Route path='/todos/' component={() => <TodoList items={this.state.todos}/>}/>
+                    <Route path='/projects/' component={() => <ProjectList items={this.state.projects}/>}/>
+                    <Route component={NotFound404}></Route>
+                    <Route exact path='/login/' component={() => <LoginForm
+                        get_token={(username, password) => this.get_token(username, password)}/>}/>
+                </Routes>
+            </BrowserRouter>
 
         )
     }
